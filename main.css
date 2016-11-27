@@ -1,7 +1,7 @@
 td {color: #1d0bf8}
 blockquote { color: blue ; }
 h1 { color: rgba(0,0,0,0.1); }
-em { color: #00f; color: #f00;}
+strong { color: #00f; color: #f00;}
 /* p { color: navy } */
 
 blockquote {
