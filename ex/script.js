@@ -1,6 +1,4 @@
-alert("hello JS from script.js");
-
-function showMsg()
+function showMsg(msg)
 {
-    alert("hello JS from function of script.js");
+    alert('hello ' + msg + ' from function of script.js');
 }
