@@ -1,4 +1,4 @@
-function showMsg(msg)
-{
-    alert('hello ' + msg + ' from function of script.js');
+function showMsg(msg1, msg2) {
+    alert('hello ' + msg1 + ', ' + msg2);
 }
+
