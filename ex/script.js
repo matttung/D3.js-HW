@@ -1,0 +1,1 @@
+alert("hello JS from script.js");
