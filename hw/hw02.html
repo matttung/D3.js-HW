@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hw-02</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+     <h1>HW-02</h1>
+     <p>做一個啟動函式的按鈕按下後，會跳出一個介於1911~2016之間的數字</p>
+     <p class="year"></p>   
+     <br>
+     <button onclick="launch()">啟動</button>
+     <hr>
+     <p>做一個計算平⽅方的按鈕,按下後，會把輸入的數字平⽅方
+(x*x) 印出來來在同個地⽅方</p>
+     <input type="text" class="number">   
+     <br>
+     <button onclick="sqare()">平方</button>
+     <hr>
+     <p>加上線譜跟字⺟</p>
+    <svg id="svg1" width="300" height="200">
+    </svg>
+    <hr>
+    <p>搭配亂數函式產⽣生20條有數值的長條圖</p>
+    <svg id="svg2" width="350" height="200">
+    </svg>
+    <script>
+        function getRandom(n, m){
+           return Math.ceil(Math.random()*(m-n)+n);
+        }
+        
+        function launch(){
+            var temp = getRandom(1911,2016);
+            console.log(temp);
+            d3.select(".year").text(temp);
+        }
+        
+        function sqare(){
+            var num = d3.select(".number").property("value");
+            console.log(num);
+            d3.select(".number").property("value", num*num);
+        }
+    </script>
+    <script>
+       d3.select("#svg1").append("circle").attr({
+            cx:150,
+            cy:120,
+            r:15
+        });
+        d3.select("#svg1").append("rect").attr({
+            x:160,
+            y:45,
+            width:5,
+            height:78
+        });
+        
+        d3.select("#svg1").append("text").attr({
+            x:150,
+            y:190,
+            "font-size":20,
+            "font-family":"arial"
+        }).text("A");
+        
+        for(var i=0;i<5;i++){
+           d3.select("#svg1").append("line").attr({
+                x1:0,
+                y1:45+i*30,
+                x2:300,
+                y2:45+i*30,
+                stroke:"black"           
+            }); 
+        }
+    </script>
+    <script>
+         for(var i=0; i<10; i++){
+           var temp = getRandom(20,300);
+           d3.select("#svg2").append("rect").attr({ 
+               x: 10, 
+               y: 10+12*i, 
+               width: temp, 
+               height: 10, 
+               fill: "red" 
+           });
+             
+           d3.select("#svg2").append("text").attr({ 
+               x: temp +15 , 
+               y: 20+12*i, 
+               fill: "black",
+               "font-size":12
+           }).text(temp);
+            
+        }
+    </script>
+</body>
+</html>
