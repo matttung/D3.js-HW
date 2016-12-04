@@ -12,8 +12,8 @@
      <br>
      <button onclick="launch()">啟動</button>
      <hr>
-     <p>做一個計算平⽅方的按鈕,按下後，會把輸入的數字平⽅方
-(x*x) 印出來來在同個地⽅方</p>
+     <p>做一個計算平⽅的按鈕,按下後，會把輸入的數字平⽅
+(x*x) 印出來在同個地方</p>
      <input type="text" class="number">   
      <br>
      <button onclick="sqare()">平方</button>
@@ -22,8 +22,8 @@
     <svg id="svg1" width="300" height="200">
     </svg>
     <hr>
-    <p>搭配亂數函式產⽣生20條有數值的長條圖</p>
-    <svg id="svg2" width="350" height="200">
+    <p>搭配亂數函式產生20條有數值的長條圖</p>
+    <svg id="svg2" width="350" height="250">
     </svg>
     <script>
         function getRandom(n, m){
@@ -73,7 +73,7 @@
         }
     </script>
     <script>
-         for(var i=0; i<10; i++){
+         for(var i=0; i<20; i++){
            var temp = getRandom(20,300);
            d3.select("#svg2").append("rect").attr({ 
                x: 10, 
