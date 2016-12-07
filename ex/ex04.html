@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+   <table>
+      <tr>
+          <td>-靜態SVG使⽤用法-</td>
+          <td>-動態載入SVG使⽤用法-</td>
+          <td>加上線譜跟字⺟</td>
+      </tr>
+       <tr>
+           <td> <svg id="svg1" width="300" height=“300”>
+       <circle cx="150" cy="120" r="15"></circle>
+       <rect x="160" y="45" width="5" height="78"></rect>
+    </svg></td>
+           <td><svg id="svg2" width="300" height=“300”>
+       <circle cx="150" cy="120" r="15"></circle>
+       <rect x="160" y="45" width="5" height="78"></rect>
+    </svg></td>
+           <td><svg id="svg3" width="300" height="200">
+    </svg></td>
+       </tr>
+   </table>
+    <br>
+    <p>-用D3繪製數個長條-</p>
+    <svg id="svg4" width="300" height="200">
+    </svg>
+    
+    <p>搭配亂數函式產⽣生20條有數值的長條圖</p>
+    <svg id="svg5" width="300" height="200">
+    </svg>
+    <script> 
+        d3.select("#svg2").append("circle").attr({
+            cx:150,
+            cy:120,
+            r:15
+        });
+        d3.select("#svg2").append("rect").attr({
+            x:160,
+            y:45,
+            width:5,
+            height:78
+        });
+        
+        //
+        d3.select("#svg3").append("circle").attr({
+            cx:150,
+            cy:120,
+            r:15
+        });
+        d3.select("#svg3").append("rect").attr({
+            x:160,
+            y:45,
+            width:5,
+            height:78
+        });
+        
+        d3.select("#svg3").append("text").attr({
+            x:150,
+            y:200,
+//            font-size:"5",
+//            font-family:"arial",
+            value:"A"
+        });
+        
+        for(var i=0;i<5;i++){
+           d3.select("#svg3").append("line").attr({
+                x1:0,
+                y1:75+i*30,
+                x2:300,
+                y2:75+i*30,
+                stroke:"black"           
+            }); 
+        }
+        
+        //
+        for(var i=0; i<10; i++){
+           d3.select("#svg4").append("rect").attr({ 
+               x: 10, 
+               y: 10+15*i, 
+               width: 20*(i+1), 
+               height: 10, 
+               fill: "red" 
+           });
+        } 
+        
+        for(var i=0; i<10; i++){
+           d3.select("#svg4").append("rect").attr({ 
+               x: 10+20*(i+1), 
+               y: 10+15*i, 
+               width: 200-20*(i+1), 
+               height: 10, 
+               fill: "blue" 
+           });
+        }
+        
+        //
+         function getRandom(n, m){
+           return Math.ceil(Math.random()*(m-n)+n);
+         }
+         
+         
+         for(var i=0; i<10; i++){
+           var temp = getRandom(20,300);
+           d3.select("#svg5").append("rect").attr({ 
+               x: 10, 
+               y: 10+12*i, 
+               width: temp, 
+               height: 10, 
+               fill: "red" 
+           });
+             
+           d3.select("#svg5").append("text").attr({ 
+               x: temp +15 , 
+               y: 20+12*i, 
+               fill: "black",
+               "font-size":12
+           }).text(temp);
+            
+        }
+             
+    </script>
+    
+    
+</body>
+</html>
