@@ -33,6 +33,18 @@
         })
         
     </script>
-
+    <script>
+        d3.json("invoice-taipei.json", function(dataSet){
+            var body=d3.select("body");
+            for(var i=0; i<dataSet.length; i++){
+                var item = dataSet[i];
+                if(item.number>10000000){
+                    var txt = item.industry + ' ' + item.number+ ' ' +item.city;
+                    var div = body.append("div").text(txt);
+                }
+            }
+        })
+        
+    </script>
 </body>
 </html>
