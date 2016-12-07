@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex05</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <script>
+        var arr = [85,73,60,99,49,77,82,51,32,79,19,27];
+        var body = d3.select("body");
+        for (var i=0; i<arr.length; i++){
+            var div = body.append("div").text(arr[i]);
+            if(arr[i]<60){
+                div.style({"color":"red","background":"lightgray"});
+            }
+            else if(arr[i]<80){
+                div.attr("style","color:blue;");
+            }
+            
+        }
+    </script>
+</body>
+</html>
