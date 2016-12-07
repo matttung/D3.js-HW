@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>d3-start</title>
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <style>
+        div{
+            font-size: 7px;
+        }
+    </style>
+</head>
+<body>
+ <h1>HW-03</h1>
+ <h3>製作長條圖 2016年年8⽉&&台北市&&發票金額>10億元的項⽬</h3>
+ <br>
+  <svg width="800" height="600">
+      
+  </svg>
+   
+   <script>
+       d3.json("invoice2016.json", function(dataSet){
+           var svg = d3.select("svg");
+           var count = 0;
+           for(var i=0; i<dataSet.length; i++){
+               var item = dataSet[i];
+                if(item.amount>1000000000 && item.date==='2016/8/1' && item.cid === "A"){
+                      d3.select("svg")
+                        .append("rect")
+                        .attr({
+                        x: 240,
+                        y: 10+18*count,
+                        width: item.amount/100000000,
+                        height: 15,
+                        fill: "red"
+                      });
+                      d3.select("svg")
+                        .append("text")
+                        .attr({
+                        x: 0,
+                        y: 25+18*count,
+                        "font-size": 15
+                      }).text(item.industry);
+                      count++;
+                 }
+                
+            }
+       });
+   </script>
+</body>
+</html>
