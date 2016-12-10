@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex06</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+   <script>
+        var arr = [85, 60, 99, 49, 77, 82];
+       
+        for(var i=0; i<arr.length; i++){
+            d3.select("body")
+            .append("div")
+            .datum(arr[i])
+            .text("ok");
+        }
+        console.log(d3.selectAll("div") );
+   </script>
+    
+</body>
+</html>
