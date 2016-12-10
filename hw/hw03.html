@@ -9,8 +9,10 @@
  <h1>HW-03</h1>
  <h3>製作長條圖 2016年8⽉&&台北市&&發票金額>10億元的項⽬</h3>
  <br>
-  <svg width="800" height="600">  
+  <svg width="800" height="250">  
   </svg>
+   <hr>
+   <h3>綁定資料到多個視覺元素/把數字小於70改紅⾊</h3>
    
    <script>
        d3.json("invoice2016.json", function(dataSet){
@@ -40,6 +42,34 @@
                 
             }
        });
+   </script>
+   <script>
+       var arr = [85, 60, 99, 49, 77, 82];
+       bind(arr);
+       render();
+       
+       function bind(data){
+            var selection = d3.select("body")
+                              .selectAll("div")
+                              .data(arr);
+            selection.enter().append("div");
+            selection.exit().remove();
+       }
+       
+       function render(){
+            d3.selectAll("div")
+              .style({
+                "font-size":14,
+                color:function(d){
+                    if(d<70){
+                        return "red";
+                    }    
+                }
+               })
+              .text(function(d,i){
+                return (i+1)+':'+ d;
+               });
+       }
    </script>
 </body>
 </html>
