@@ -7,18 +7,25 @@
 </head>
 <body>
    <script>
-        var arr = [85, 60, 99, 49, 77, 82];
-        var selection = d3.select("body")
-                        .selectAll("div")
-                        .data(arr);
+       var arr = [85, 60, 99, 49, 77, 82];
+       bind(arr);
+       render();
        
-        selection.enter()
-                 .append("div")
-                 .text(function(d){
-            return d;
-        });
+       function bind(data){
+            var selection = d3.select("body")
+                              .selectAll("div")
+                              .data(arr);
+            selection.enter().append("div");
+            selection.exit().remove();
+       }
+       
+       function render(){
+            d3.selectAll("div")
+              .text(function(d,i){
+                return i + ':' + d;
+              });
+       }
         
    </script>
-    
 </body>
 </html>
