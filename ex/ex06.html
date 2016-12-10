@@ -6,22 +6,18 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
    <script>
         var arr = [85, 60, 99, 49, 77, 82];
+        var selection = d3.select("body")
+                        .selectAll("div")
+                        .data(arr);
        
-        d3.select("body")
-        .selectAll("div")
-        .data(arr)
-        .text(function(d){
+        selection.enter()
+                 .append("div")
+                 .text(function(d){
             return d;
         });
-      
+        
    </script>
     
 </body>
