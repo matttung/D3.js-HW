@@ -21,9 +21,16 @@
        
        function render(){
             d3.selectAll("div")
+              .style({
+                color:function(d){
+                    if(d<70){
+                        return "red";
+                    }    
+                }
+               })
               .text(function(d,i){
-                return i + ':' + d;
-              });
+                return (i+1)+':'+ d;
+               });
        }
         
    </script>
