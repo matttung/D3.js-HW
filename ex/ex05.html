@@ -21,16 +21,16 @@
         }
     </script>
     <script>
-        d3.csv("invoice-taipei.csv", function(dataSet){
-            var body=d3.select("body");
-            for(var i=0; i<dataSet.length; i++){
-                var item = dataSet[i];
-                if(item.number>10000000){
-                    var txt = item.industry + ' ' + item.number+ ' ' +item.city;
-                    var div = body.append("div").text(txt);
-                }
-            }
-        })
+//        d3.csv("invoice-taipei.csv", function(dataSet){
+//            var body=d3.select("body");
+//            for(var i=0; i<dataSet.length; i++){
+//                var item = dataSet[i];
+//                if(item.number>10000000){
+//                    var txt = item.industry + ' ' + item.number+ ' ' +item.city;
+//                    var div = body.append("div").text(txt);
+//                }
+//            }
+//        })
         
     </script>
     <script>
@@ -38,8 +38,9 @@
             var body=d3.select("body");
             for(var i=0; i<dataSet.length; i++){
                 var item = dataSet[i];
-                if(item.number>10000000){
-                    var txt = item.industry + ' ' + item.number+ ' ' +item.city;
+                if(item.amount>1000000000 && item.date==='2016/8/1' && item.cid === "A"){
+                    var txt = item.industry;
+                    var txt = item.industry;
                     var div = body.append("div").text(txt);
                 }
             }
