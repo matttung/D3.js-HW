@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW-4</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <h1>HW-04</h1>
+    <h3>建立簡單動態圖表</h3>
+    <button id="update" onclick="update()">Update</button>
+   <script>
+       var array = [85, 60, 99, 49, 77, 82];
+       
+       var width_svg = 800;
+       var height_svg = 200;            
+       appendSVG(width_svg,height_svg);
+       
+       bind(array,"rect");
+       bind(array,"text");
+       
+       var padding_svg = 50;       
+       var width_rect = 22;
+       render(padding_svg,width_rect,height_svg);
+
+       function appendSVG(width, height){
+           var selection = d3.select("body")
+                             .append("svg")
+                             .attr({"width":width,"height":height});
+       }
+       
+       function bind(data,element){
+            var selection = d3.select("svg")
+                              .selectAll(element)
+                              .data(array);
+           
+            selection.enter().append(element);
+            selection.exit().remove();
+       }
+       
+       function render(padding,width,height){
+            d3.selectAll("rect")
+              .attr({
+                    x:function(data,index){return padding + width*index;},
+                    y:function(data,index){return height - padding - data;},
+                    width:20,
+                    height:function(data){return data;},
+                    fill: function(data){
+                        if(data<70) return "red";
+                        else return "lightgreen"
+                    }
+            });
+           
+           d3.selectAll("text")
+             .attr({x:function(data,index){return padding + width*index;},
+                    y:function(data,index){return height - padding + 15;}})
+             .text(function(data){return data;});
+       }
+       
+       function update(){
+         var newValue =  getRandom(20,100);
+         array.push(newValue);
+         bind(array,"rect");
+         bind(array,"text");
+         render(padding_svg,width_rect,height_svg);  
+       }     
+       
+       function getRandom(n, m){
+           return Math.ceil(Math.random()*(m-n)+n);
+       }
+   </script>
+</body>
+</html>
