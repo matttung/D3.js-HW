@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex07</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <script>
+        var value = getRamdon(0,100);
+        console.log(value);
+        
+        function getRamdon(min,max){
+            var rScale = d3.scale.linear()
+                            .domain([0, 1])
+                            .rangeRound([min,max]);
+            return rScale(Math.random());
+        }
+        
+    </script>
+</body>
+</html>
