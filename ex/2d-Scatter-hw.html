@@ -31,18 +31,19 @@
         
         //2. 建立svg()畫布環境
         
-        svg();       
+        createSvg();       
         
         //3. 用d3讀取csv
         d3.csv("invoice.csv", function(dataSet){
            
            bind(dataSet);
            render(dataSet);
+           btnList(dataSet);
             
         });
+       
         
-        
-        function svg(){
+        function createSvg(){
            d3.select("body").append("svg").attr({
                width:width,
                height:height
@@ -52,6 +53,9 @@
                 height: "100%",
                 fill: "white"
             });
+            
+            d3.select("svg").append("g").attr("id","axisX");
+            d3.select("svg").append("g").attr("id","axisY");
         }
         
         //4. 建立bind()
@@ -83,15 +87,15 @@
             
            var fScale = d3.scale.category20();
             
-            var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(12);
+            var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
             var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-            d3.select("svg").append("g")
+            d3.select("g#axisX")
               .attr("class","axis")
               .attr("transform", "translate(0, "+(height - padding+15)+")")
               .call(xAxis);
             
-            d3.select("svg").append("g")
+            d3.select("g#axisY")
               .attr("class","axis")
               .attr("transform", "translate("+(padding-12)+",0)")
               .call(yAxis);
@@ -105,6 +109,52 @@
                     fill:function(item,index){return fScale(item.cid);}
               });
         }
+        
+        function btnList(dataSet){
+            var industryArray = dataSet.map(function(data){
+                                          return data.industry;})
+                                       .filter(function(data){
+                                          return data != "";
+                                        });
+            
+            var uniqueIndustryArray = unique(industryArray);
+            
+            var selection = d3.select("body").append("div")
+                              .selectAll("input")
+                              .data(uniqueIndustryArray);
+            
+            selection.enter().append("input")
+                             .attr({ value:function(data){ return data;},
+                                      type:"button"
+                                    })
+                             .on("click", function(data){update(data);});
+            
+            selection .exit().remove();
+            
+            function update(industryName){
+                var newDataSet = dataSet.filter(function(data){
+                    return data.industry === industryName;
+                });
+
+                bind(newDataSet);
+                render(newDataSet);
+                
+                d3.select("")
+            }
+        }
+        
+        function unique(array){
+            var tempArray =[];
+            array.map(function(item){
+                if(tempArray.indexOf(item)<0){
+                    tempArray.push(item);
+                }
+            });
+            
+            return tempArray;
+        }
+        
+  
     </script>
 
 </body>
