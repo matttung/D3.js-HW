@@ -19,9 +19,29 @@
             font-size: 15px;
             fill:blue;
         }
+        
+        #tooltip{
+          position: absolute;
+          left: 20px; 
+          top:  100px; 
+          background: #fff;
+          width: 150px;
+          height: auto;
+          padding: 0px 10px;
+          border-radius: 5px;
+          box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+        }
+         #tooltip.hidden{
+          display: none;
+        } 
+        
     </style>
 </head>
 <body>
+    <div id="tooltip" class="hidden">
+        <p><strong id="city">Hello</strong></p>
+        <p id="industry">tool2p</p>
+    </div>
     <script>
         // 1. 定義width, height, padding, letterList變數
         var width = 900;
@@ -106,8 +126,23 @@
                       cx:function(item){return xScale(new Date(item.date));},
                       cy:function(item){return yScale(+item.number);},
                        r:function(item){return rScale(+item.amount);},
-                    fill:function(item,index){return fScale(item.cid);}
-              });
+                    fill:function(item,index){return fScale(item.cid);}})
+                .on("mouseover",function(item){
+                    var cx = d3.select(this).attr("cx");
+                    var cy = d3.select(this).attr("cy");
+                
+                    var tooltip = d3.select("#tooltip")
+                                    .style({
+                                        left:(+cx+15)+"px",
+                                        top:(+cy+15)+"px"});
+                
+                    tooltip.select("#city").text(item.city);
+                    tooltip.select("#industry").text(item.industry);
+
+                    d3.select("#tooltip").classed("hidden",false);})
+                .on("mouseout", function(data){
+                    d3.select("#tooltip").classed("hidden",true)
+                });    
         }
         
         function btnList(dataSet){
@@ -172,7 +207,7 @@
                 var newDataSet = dataSet.filter(function(data){
                     return data.industry === industryName;
                 });
-
+                console.log(newDataSet);
                 bind(newDataSet);
                 render(newDataSet);
                 
