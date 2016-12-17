@@ -38,8 +38,8 @@
            
            bind(dataSet);
            render(dataSet);
-           btnList(dataSet);
-            
+           optionList(dataSet);
+           
         });
        
         
@@ -128,6 +128,43 @@
                                       type:"button"
                                     })
                              .on("click", function(data){update(data);});
+            
+            selection .exit().remove();
+            
+            function update(industryName){
+                var newDataSet = dataSet.filter(function(data){
+                    return data.industry === industryName;
+                });
+
+                bind(newDataSet);
+                render(newDataSet);
+                
+                d3.select("")
+            }
+        }
+        
+       function optionList(dataSet){
+            var industryArray = dataSet.map(function(data){
+                                          return data.industry;})
+                                       .filter(function(data){
+                                          return data != "";
+                                        });
+            
+            var uniqueIndustryArray = unique(industryArray);
+            
+            var selection = d3.select("body").append("select")
+                              .selectAll("option")
+                              .data(uniqueIndustryArray);
+            
+            selection.enter().append("option")
+                             .attr({ value:function(data){ return data;}})
+                             .text(function(data){ return data;})
+                             
+            d3.select("select")
+              .on("change", function(data){
+                  var value= d3.select("select").property("value"); 
+                  update(value);
+                });
             
             selection .exit().remove();
             
