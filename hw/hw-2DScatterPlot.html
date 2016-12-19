@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HW-2DScatterPlot</title>
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="hw-2DScatterPlot.css">
+</head>
+<body>
+    <h1>HW-2DScatterPlot</h1>
+    <h3>建立互動性圖表</h3>
+    <div id="tooltip" class="hidden">
+        <p><strong id="city">Hello</strong></p>
+        <p id="industry">tool2p</p>
+    </div>
+    <div id="main">
+       <div class="top">
+           <div class="dropdownlist">⾏業別下拉式選單</div>
+           <div id="dropdownlist"></div>
+       </div>
+       <div class="bottom">
+            <div id="svg"></div>
+            <div id="buttonlist"></div>
+       </div> 
+    </div>
+    <script src="hw-2DScatterPlot.js"></script>
+  </body>
+</html>  

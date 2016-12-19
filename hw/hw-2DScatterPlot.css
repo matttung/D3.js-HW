@@ -1,0 +1,54 @@
+  body {
+      background: #eee;
+  }
+  
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: auto;
+  }
+  
+  .axis text {
+      font-size: 15px;
+      fill: blue;
+  }
+  
+  #tooltip {
+      position: absolute;
+      left: 20px;
+      top: 100px;
+      background: #fff;
+      width: auto;
+      height: auto;
+      padding: 0px 10px;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  #tooltip.hidden {
+      display: none;
+  }
+  
+  div .top, .bottom, #svg{
+      float: left;
+      margin-left: 10px;
+  }
+  
+  div #buttonlist {
+      float: left;
+      margin-left: 10px;
+      width: 300px;
+      height: auto;
+  }
+  
+  div #dropdownlist, .dropdownlist {
+      float: left;
+      margin-left: 20px;
+      margin-bottom: 10px;
+  }
+  
+  .btn-primary-spacing {
+      margin-right: 5px;
+      margin-bottom: 5px !important;
+  }
