@@ -6,9 +6,16 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
-    <h1>HW-04</h1>
-    <h3>建立簡單動態圖表</h3>
-    <button id="update" onclick="update()">Update</button>
+    <div id="hw04">
+        <h1>HW-04</h1>
+        <h3>建立簡單動態圖表</h3>
+        <button id="update" onclick="update()">Update</button>
+    </div>
+    <div></div>
+    <div>
+        <h1>HW-2DScatterPlot</h1>
+        <h3><a href="https://matttung.github.io/D3.js-HW/hw/hw-2DScatterPlot.html">建立互動性圖表</a></h3>
+    </div>    
    <script>
        var array = [85, 60, 99, 49, 77, 82];
        
@@ -24,7 +31,7 @@
        render(padding_svg,width_rect,height_svg);
 
        function appendSVG(width, height){
-           var selection = d3.select("body")
+           var selection = d3.select("body>div#hw04")
                              .append("svg")
                              .attr({"width":width,"height":height});
        }
